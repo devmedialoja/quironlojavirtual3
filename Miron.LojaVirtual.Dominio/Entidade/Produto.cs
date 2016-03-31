@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Miron.LojaVirtual.Dominio.Entidade
 {
-    class Produto
+    public class Produto
     {
         public int ProdutoId { get; set; }
         public string Nome { get; set; }

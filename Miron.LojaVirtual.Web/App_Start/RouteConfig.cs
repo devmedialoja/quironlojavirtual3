@@ -18,6 +18,12 @@ namespace Miron.LojaVirtual.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: null,
+                url: "Pagina{pagina}",
+                defaults: new { Controller = "Vitrine", action = "ListaProdutos" }
+                );
         }
     }
 }

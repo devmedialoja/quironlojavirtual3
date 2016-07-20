@@ -15,7 +15,7 @@ namespace Miron.LojaVirtual.Web.Controllers
         public int ProdutosPorPagina = 8;  //3
 
         // GET: Vitrine
-        public ViewResult ListaProdutos(int pagina = 1)  //ActionResult
+        public ViewResult ListaProdutos(string categoria, int pagina = 1)  //ActionResult
         {
             _repositorio = new ProdutosRepositorio();
 
@@ -23,6 +23,7 @@ namespace Miron.LojaVirtual.Web.Controllers
             { 
 
                 Produtos = _repositorio.Produtos
+                    .Where(p => categoria == null || p.Categoria == categoria)
                     .OrderBy(p => p.Descricao)
                     .Skip((pagina - 1) * ProdutosPorPagina)
                     .Take(ProdutosPorPagina),
@@ -32,7 +33,8 @@ namespace Miron.LojaVirtual.Web.Controllers
                   PaginaAtual = pagina,
                   ItensPorPagina = ProdutosPorPagina,
                   ItensTotal = _repositorio.Produtos.Count()
-                }
+                },
+                CategoriaAtual = categoria
             };
             
             
